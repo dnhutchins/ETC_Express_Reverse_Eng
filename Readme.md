@@ -10,7 +10,7 @@ The ultimate goal of this work is to develop an interface to use the control sur
 ## Teardown & Analysis
 
 Internal images are in the folder [internal-photos](internal-photos/)
-The last version of the firmware released: [Firmware](etc-firmware/Express3.11)
+The last version of the firmware released: [Firmware](https://www.etcconnect.com/Support/Consoles/Legacy/Express/Software.aspx)
 
 ## 34-pin "Face Panel Bus" Connector
 
