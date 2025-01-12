@@ -20,12 +20,32 @@ In the case of the 24/48 model I have access to, the surface consists of two mai
 On the left is the 48 fader & bump key module, consisting of 48 carbon film slide potentiometers as well as 48 momentary normally open "bump key" switches. Various multiplexers/decoders are used in conjunction with a PIC module to create a 2-wire communications link that is passed through directly to the CPU module (where it terminates at an Altera Flex FPGA) for decoding. With the bottom row of bump keys, there are 24 in-key LEDs, these are managed using an ICM7218BIPI LED control IC.
 ##### Design & Control keys, Master, and Cross faders
  On the right is the initial focus of this project. The primary control interface consisting of 70 N/O momentary key switches, 35 in-key LEDs, 5 carbon film slide potentiometers, and a touch-pad. These interface with the CPU module using 8 pins forming an 8 bit data bus,  7 pins as inputs to the 3 primary multiplexers/decoders, and 2 pins for control signals to the MAX150BCPP ADC. The ADC samples the state of the 5 fader potentiometers through a CD74HC4051-EP Analog Multiplexer and Demultiplexer. 
- 
-### Original firmware
+ #### CPU Module
+ This is the "brains" of the lighting console. This is an old embedded Intel design, employing fairly common chipsets for SuperIO, Floppy, Parallel, Ethernet, and VGA. Alongside the more common stuff, is an Altera Flex FPGA that likely handles the more specific stuff like DMX, ETCNet, MIDI, etc. 
+##### Original firmware
 This project aims to interface with the control surface, and discard the original CPU/IO module, so this is just listed as a reference in-case someone reads this and want's to port Doom to the express series console's CPU module or something.   
 The last version of the firmware released: [Firmware](https://www.etcconnect.com/Support/Consoles/Legacy/Express/Software.aspx)
 
-## Circuit Operation
+## Circuit Operation (control surface)
+Since the two sections of the surface communicate to the CPU independently the will be treated as separate entities here. 
+### Control Section
+There is no external or internal clock signal in this section, states are read/written real-time. 
+#### 8-bit Bus
+1. Connection to the CPU module is buffered via U9, the SN74LS245N Tri-State Octal Bus Transceiver.
+1. The bus sets U7 and U8, SN74LS374, to select which CD74HC4051-EP analog multiplexer/demultiplexer is enabled 
+	* (One mux is used to decode the analog faders, as well as additional muxes for additional faders not installed in the 24/48 I have access to)
+1. U13 sets the bus, this appears to be used to decode key presses
+1. The bus sets U14 icm7218bipi 8-bit LED display driver, used to drive the in-key leds
+1. U15 max150bcpp CMOS High Speed 8 Bit ADC sets the bus with value of the fader being routed via the analog mux
+#### Selection Muxes
+1. U6 - SN74LS138 ... TODO
+1. U11 - SN74LS156... TODO
+1. U12 - SN74LS156... TODO
+#### ADC Control
+1. U15 MAX150... TODO
+
+### Fader Section
+TODO...
 
 ## 34-pin "Face Panel Bus" Connector
 
