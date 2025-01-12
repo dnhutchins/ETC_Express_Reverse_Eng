@@ -1,4 +1,5 @@
 
+
 # ETC Express Control Surface Reverse Engineering
 
 ![ETC Express Control Surface](internal-photos/title_image.jpg?raw=true)
@@ -9,8 +10,22 @@ The ultimate goal of this work is to develop an interface to use the control sur
 
 ## Teardown & Analysis
 
+### Internal Layout
 Internal images are in the folder [internal-photos](internal-photos/)
+### General System Layout
+Overall, the console is comprised of two main components, the CPU/IO module, and the control surface. The two are connected by means of a 34 pin (2x17) connector. 
+#### Control Surface
+In the case of the 24/48 model I have access to, the surface consists of two main sections. These two sections are internally separate circuits, with each communicating with the CPU board independently. 
+##### Fader & Bump Keys
+On the left is the 48 fader & bump key module, consisting of 48 carbon film slide potentiometers as well as 48 momentary normally open "bump key" switches. Various multiplexers/decoders are used in conjunction with a PIC module to create a 2-wire communications link that is passed through directly to the CPU module (where it terminates at an Altera Flex FPGA) for decoding. With the bottom row of bump keys, there are 24 in-key LEDs, these are managed using an ICM7218BIPI LED control IC.
+##### Design & Control keys, Master, and Cross faders
+ On the right is the initial focus of this project. The primary control interface consisting of 70 N/O momentary key switches, 35 in-key LEDs, 5 carbon film slide potentiometers, and a touch-pad. These interface with the CPU module using 8 pins forming an 8 bit data bus,  7 pins as inputs to the 3 primary multiplexers/decoders, and 2 pins for control signals to the MAX150BCPP ADC. The ADC samples the state of the 5 fader potentiometers through a CD74HC4051-EP Analog Multiplexer and Demultiplexer. 
+ 
+### Original firmware
+This project aims to interface with the control surface, and discard the original CPU/IO module, so this is just listed as a reference in-case someone reads this and want's to port Doom to the express series console's CPU module or something.   
 The last version of the firmware released: [Firmware](https://www.etcconnect.com/Support/Consoles/Legacy/Express/Software.aspx)
+
+## Circuit Operation
 
 ## 34-pin "Face Panel Bus" Connector
 
