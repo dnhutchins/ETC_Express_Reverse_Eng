@@ -28,6 +28,7 @@ The last version of the firmware released: [Firmware](https://www.etcconnect.com
 
 ## Circuit Operation (control surface)
 Since the two sections of the surface communicate to the CPU independently the will be treated as separate entities here. 
+![Schematic](kicad/ExpressForEOS.svg)
 ### Control Section
 There is no external or internal clock signal in this section, states are read/written real-time. 
 #### 8-bit Bus
