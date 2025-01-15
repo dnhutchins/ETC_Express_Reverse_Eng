@@ -29,7 +29,7 @@ The last version of the firmware released: [Firmware](https://www.etcconnect.com
 ## Circuit Operation (control surface)
 Since the two sections of the surface communicate to the CPU independently the will be treated as separate entities here. 
 ### Control Section
-![Schematic](kicad/ExpressForEOS/ExpressForEOS.svg)
+![Schematic](https://raw.githubusercontent.com/dnhutchins/ETC_Express_Reverse_Eng/refs/heads/main/kicad/ExpressForEOS/ExpressForEOS.svg)
 There is no external or internal clock signal in this section, states are read/written real-time. 
 #### 8-bit Bus
 1. Connection to the CPU module is buffered via U9, the SN74LS245N Tri-State Octal Bus Transceiver.
