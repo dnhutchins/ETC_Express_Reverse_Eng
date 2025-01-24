@@ -29,6 +29,8 @@ The last version of the firmware released: [Firmware](https://www.etcconnect.com
 ## Circuit Operation (control surface)
 Since the two sections of the surface communicate to the CPU independently the will be treated as separate entities here. 
 ### Control Section
+NOTE: This schematic is the product of tracing connections on this circuit, it is only meant to serve as a reference for signaling, it does not include descrete components such as bypass caps, pull up/down resistors, etc.
+
 ![Schematic](https://raw.githubusercontent.com/dnhutchins/ETC_Express_Reverse_Eng/refs/heads/main/kicad/ExpressForEOS/ExpressForEOS.svg)
 There is no external or internal clock signal in this section, states are read/written real-time, and individual ICs are clocked independently using (mostly) seperate signals.
 #### Integrated Circuits
